@@ -291,10 +291,140 @@ ol.sources-list li {
   color: var(--accent-text);
 }
 
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Sticky Quick-Jump Nav Bar (Pure HTML+CSS, Mobile-First) */
+.day-nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  grid-column: 1 / -1;
+  background: rgba(241, 244, 242, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--hair);
+  padding: 10px 0;
+  margin: 0 0 28px;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.day-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.day-nav a {
+  flex: 0 0 auto;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  background: #FFFFFF;
+  border: 1px solid var(--hair);
+  border-radius: 999px;
+  padding: 6px 13px;
+  line-height: 1.3;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.day-nav a:hover,
+.day-nav a:focus {
+  background: var(--accent);
+  color: #FFFFFF;
+  border-color: var(--accent);
+}
+
+.day-nav a.nav-accent {
+  background: var(--accent-2);
+  color: #FFFFFF;
+  border-color: var(--accent-2);
+}
+
+.itinerary-grid .col-block {
+  background: #FFFFFF;
+  border: 1px solid var(--hair);
+  border-top: 3px solid var(--accent);
+  border-radius: 16px;
+  padding: 20px 20px 14px;
+  scroll-margin-top: 64px;
+}
+
+.itinerary-grid .col-block h3 {
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #E3E8E5;
+  color: var(--accent-text);
+}
+
+.itinerary-grid ul.clean-list li {
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px dashed #E1E7E4;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.itinerary-grid ul.clean-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+#ref-safety {
+  scroll-margin-top: 64px;
+}
+
+.svg-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-scroll-hint {
+  display: none;
+  font-size: 12px;
+  color: var(--mute);
+  margin: -6px 0 8px;
+}
+
+details.sources-details {
+  border: 1px solid var(--hair);
+  border-radius: 12px;
+  background: #FFFFFF;
+  padding: 14px 18px;
+}
+
+details.sources-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 15px;
+  list-style: none;
+}
+
+details.sources-details summary::before {
+  content: "▸ ";
+  color: var(--accent-text);
+}
+
+details.sources-details[open] summary::before {
+  content: "▾ ";
+}
+
 @media (max-width: 860px) {
+  .span-10 {
+    grid-column: 1 / -1;
+  }
   .verdict-row,
   .cols-2 {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
   .col-left,
   .col-right {
@@ -305,14 +435,106 @@ ol.sources-list li {
     overflow-x: auto;
   }
 }
+
+@media (max-width: 640px) {
+  html {
+    font-size: 15.5px;
+    line-height: 1.68;
+  }
+  body {
+    padding: 12px 14px 56px;
+  }
+  .page {
+    column-gap: 0;
+  }
+  .day-nav {
+    margin: 0 -14px 20px;
+    padding: 10px 14px;
+  }
+  h1 {
+    font-size: 27px;
+    line-height: 1.24;
+    margin-bottom: 14px;
+  }
+  .deck {
+    font-size: 15.5px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+  .verdict-row {
+    padding: 16px 0;
+    margin-bottom: 26px;
+    gap: 16px;
+  }
+  .verdict-item strong {
+    font-size: 18px;
+  }
+  .verdict-item p {
+    font-size: 14.5px;
+  }
+  .img-wrap,
+  .img-wrap img {
+    border-radius: 18px;
+  }
+  figure.hero-fig {
+    margin-bottom: 34px;
+  }
+  .sec {
+    margin-top: 44px;
+    padding-top: 22px;
+  }
+  h2 {
+    font-size: 22px;
+    line-height: 1.3;
+    margin-bottom: 14px;
+  }
+  h3 {
+    font-size: 18px;
+    line-height: 1.35;
+  }
+  .fig-title {
+    font-size: 16.5px;
+  }
+  .itinerary-grid .col-block {
+    padding: 16px 14px 12px;
+    border-radius: 14px;
+  }
+  ul.clean-list li {
+    padding-left: 16px;
+    font-size: 15px;
+  }
+  .svg-figure {
+    margin: 22px 0;
+  }
+  .svg-scroll svg {
+    min-width: 560px;
+  }
+  .mobile-scroll-hint {
+    display: block;
+  }
+  a {
+    text-underline-offset: 4px;
+  }
+}
+
 </style>
 </head>
 <body>
 <main class="page">
 
+  <nav class="day-nav" aria-label="每日行程快速跳轉">
+    <a href="#day-26">11/26 博多</a>
+    <a href="#day-27">11/27 親子</a>
+    <a href="#day-28">11/28 太宰府</a>
+    <a href="#day-29">11/29 動物園</a>
+    <a href="#day-30">11/30 秋月</a>
+    <a href="#day-01">12/1 返台</a>
+    <a href="#ref-safety" class="nav-accent">加油・退稅・緊急</a>
+  </nav>
+
   <header class="span-12">
     <h1 class="span-10">福岡至由布院六日親子全攻略：行程節奏、幼兒飲食與自駕指南</h1>
-    <p class="deck">針對 11 月 26 日至 12 月 1 日的 KML 行程清單，從「帶著 17 個月幼兒」的體力、飲食與午睡節奏出發，整理每日景點取捨、沿途親子餐廳與寶寶補給、日田巨人兩館順路順序，以及日本加油與九州山區自駕注意事項。</p>
+    <p class="deck">針對 11 月 26 日至 12 月 1 日的 KML 行程清單，從「帶著 1 歲 6 個月幼兒（悠悠）」的體力、飲食與午睡節奏出發，整理每日景點取捨、沿途親子餐廳與寶寶補給、日田巨人兩館順路順序，以及日本加油與九州山區自駕注意事項。</p>
 
     <div class="verdict-row">
       <div class="verdict-item">
@@ -321,11 +543,11 @@ ol.sources-list li {
       </div>
       <div class="verdict-item">
         <strong>午睡窗配長途＋先去本館</strong>
-        <p>11/28–30 跨縣移動全數對齊 12:00–14:00 午睡；11/29 日田先訪 17:00 關門的巨人本館，再去開到 19:00 的新館。</p>
+        <p>11/28–30 跨縣移動對齊 12:00–14:00 午睡；11/29 上午先逛九州自然動物園，午後日田先訪 17:00 關門的巨人本館，再去開到 19:00 的新館。</p>
       </div>
       <div class="verdict-item">
         <strong>紅槍汽油＋17:15 入山</strong>
-        <p>認清紅色「レギュラー」普通汽油、守住「止まれ」完全停等，並於 17:15 日落前抵達由布院與日田溫泉旅館。</p>
+        <p>認清紅色「レギュラー」普通汽油、守住「止まれ」完全停等；留意 11/28 防雨防風、11/29 清晨 3°C 保暖，並於 17:15 日落前抵達溫泉旅館。</p>
       </div>
     </div>
   </header>
@@ -344,7 +566,9 @@ ol.sources-list li {
 
     <figure class="svg-figure span-12">
       <p class="fig-title">11/28–30 三天自駕最契合路線，將跨縣移動精準放入 12:00–14:00 午睡窗</p>
-      <svg viewBox="0 0 680 370" width="100%" role="img" aria-label="六日行程交通方式與幼兒午睡時段配合圖">
+      <p class="mobile-scroll-hint">← 左右滑動查看完整圖表 →</p>
+      <div class="svg-scroll">
+        <svg viewBox="0 0 680 370" width="100%" role="img" aria-label="六日行程交通方式與幼兒午睡時段配合圖">
         <rect x="303" y="34" width="87" height="296" fill="#E2ECE7"/>
         <text x="346" y="24" text-anchor="middle" font-family="Google Sans Code, Noto Sans TC, monospace" font-size="12" font-weight="500" fill="#1B4A3F">12:00–14:00 午睡窗</text>
 
@@ -403,6 +627,7 @@ ol.sources-list li {
         <rect x="173" y="298" width="130" height="28" rx="6" fill="#52635B"/>
         <text x="238" y="317" text-anchor="middle" font-family="Plus Jakarta Sans, Noto Sans TC, sans-serif" font-size="13" fill="#FFFFFF">09:45 抵國際線・12:15 飛</text>
       </svg>
+      </div>
       <figcaption>說明：紅色區塊為跨區開車時段，對齊 12:00–14:00 午睡窗；建議 11/28 早上取車、11/30 傍晚還車，避開市區停車與塞車。</figcaption>
     </figure>
 
@@ -419,85 +644,87 @@ ol.sources-list li {
     <h2>11/26–12/1 每日行程全攻略（每餐皆含飯類與非飯類各 1 選、導航、停車、穿搭與雨備）</h2>
     <p class="measure">每天出門只需看對應日期的卡片：所有景點、餐廳（每餐皆提供 <strong>1 個飯類＋1 個非飯類</strong>選擇）、停車場與住宿皆可點擊開啟 Google 地圖；隨身備好食物剪刀、吸管保溫水杯與拋棄式圍兜。</p>
 
-    <div class="cols-2">
-      <div class="col-block">
+    <div class="cols-2 itinerary-grid">
+      <div class="col-block" id="day-26">
         <h3>11/26（四）福岡市區｜抵達博多・輕量採買</h3>
         <ul class="clean-list">
           <li><strong>08:00–11:15 抵達</strong>：飛抵<strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%A9%BA%E6%B8%AF+%E5%9B%BD%E9%9A%9B%E7%B7%9A%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB" target="_blank" rel="noopener noreferrer">福岡國際機場</a></strong>，搭計程車或機場巴士至 <strong><a href="https://www.google.com/maps/search/?api=1&query=THE+BLOSSOM+HAKATA+Premier" target="_blank" rel="noopener noreferrer">THE BLOSSOM HAKATA Premier</a></strong> 寄放行李。</li>
-          <li><strong>午餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%9E%E3%83%AB%E3%83%A2%E3%82%AD%E3%83%83%E3%83%81%E3%83%B3+KITTE%E5%8D%9A%E5%A4%9A%E5%BA%97" target="_blank" rel="noopener noreferrer">マルモキッチン KITTE博多店</a></strong>（11:00–23:00，鮭魚／嫩雞丼飯與味噌湯）或 <strong>LaLaport 3F 親子丼</strong>；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%9B%A0%E5%B9%A1%E3%81%86%E3%81%A9%E3%82%93+%E5%8D%9A%E5%A4%9A1%E7%95%AA%E8%A1%97%E5%BA%97" target="_blank" rel="noopener noreferrer">因幡烏龍麵 博多1番街店</a></strong>（10:00–22:00，<a href="https://www.hakata-1bangai.com/floorguide/shop15.html" target="_blank" rel="noopener noreferrer">博多1番街</a>，軟嫩清湯烏龍麵）。點心可順道買飯店旁 <strong><a href="https://www.google.com/maps/search/?api=1&query=The+Full+Full+Hakata+%E7%A6%8F%E5%B2%A1" target="_blank" rel="noopener noreferrer">The Full Full Hakata</a></strong>（<a href="https://kyushu.letsgojp.com/archives/916642/" target="_blank" rel="noopener noreferrer">10:00–19:00</a>，建議電話預訂）。</li>
+          <li><strong>午餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%9E%E3%83%AB%E3%83%A2%E3%82%AD%E3%83%83%E3%83%81%E3%83%B3+KITTE%E5%8D%9A%E5%A4%9A%E5%BA%97" target="_blank" rel="noopener noreferrer">マルモキッチン KITTE博多店</a></strong>（11:00–23:00，<a href="https://hakata.jp-kitte.jp/shop/index.jsp?bf=1&fmt=6&shopid=90610" target="_blank" rel="noopener noreferrer">備兒童椅與兒童餐</a>）或 <strong>LaLaport 3F 親子丼</strong>；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%9B%A0%E5%B9%A1%E3%81%86%E3%81%A9%E3%82%93+%E5%8D%9A%E5%A4%9A1%E7%95%AA%E8%A1%97%E5%BA%97" target="_blank" rel="noopener noreferrer">因幡烏龍麵 博多1番街店</a></strong>（10:00–22:00，<a href="https://www.hakata-1bangai.com/floorguide/shop15.html" target="_blank" rel="noopener noreferrer">博多1番街</a>）。<br>👶 <strong>1 歲 6 個月推薦品項</strong>：マルモ點<strong>兒童餐／熟鮭魚蔬菜丼＋蔬菜豚汁</strong>（挑出熟蔬菜與白飯）；因幡點<strong>原味昆布烏龍麵（かけうどん）或豆皮烏龍麵（きつね）</strong>，麵條剪短＋湯頭微兌溫水去鹹。點心買 <strong><a href="https://www.google.com/maps/search/?api=1&query=The+Full+Full+Hakata+%E7%A6%8F%E5%B2%A1" target="_blank" rel="noopener noreferrer">The Full Full Hakata</a></strong> 可剝少量原味法國麵包芯。</li>
           <li><strong>14:30–17:30 逛街</strong>：從 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%82%89%E3%82%89%E3%81%BD%E3%83%BC%E3%81%A8%E7%A6%8F%E5%B2%A1" target="_blank" rel="noopener noreferrer">LaLaport 福岡</a></strong>（看鋼彈、<a href="https://mitsui-shopping-park.com/tw/lalaport/mamawith/fukuoka/approach/04.html" target="_blank" rel="noopener noreferrer">3F 親子坐席與調乳室</a>）與 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E9%A7%85" target="_blank" rel="noopener noreferrer">博多車站（KITTE / AMU PLAZA）</a></strong> 二選一，順遊 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E6%AB%9B%E7%94%B0%E7%A5%9E%E7%A4%BE+%E7%A6%8F%E5%B2%A1" target="_blank" rel="noopener noreferrer">櫛田神社</a></strong>。</li>
-          <li><strong>晚餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E8%8F%AF%E5%91%B3%E9%B3%A5+%E5%8D%9A%E5%A4%9A%E9%A7%85%E5%89%8D%E5%BA%97" target="_blank" rel="noopener noreferrer">水炊料亭 博多華味鳥 博多站前店</a></strong>（需先訂位，<a href="https://tw.savorjapan.com/0004045152" target="_blank" rel="noopener noreferrer">歡迎幼童</a>，雞白湯雜炊與白飯配嫩雞肉）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E5%9C%B0%E3%81%AE%E3%81%86%E3%81%A9%E3%82%93+%E5%8D%9A%E5%A4%9A%E9%A7%85%E3%81%A1%E3%81%8B%E3%81%A6%E3%82%93" target="_blank" rel="noopener noreferrer">大地烏龍麵 博多站地下店</a></strong>（17:00–21:00，<a href="https://daichinoudon.com/shop/" target="_blank" rel="noopener noreferrer">官網</a>，免訂位清湯烏龍麵）。餐後逛 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%AD%E3%83%94%E3%82%A2+%E5%8D%9A%E5%A4%9A%E3%83%A8%E3%83%89%E3%83%90%E3%82%B7%E5%BA%97" target="_blank" rel="noopener noreferrer">LOPIA 博多友都八喜店</a></strong>（<a href="https://gogojp.tw/hakata-lopia/" target="_blank" rel="noopener noreferrer">僅收現金</a>）補買常溫寶寶粥、鮮奶與香蕉。</li>
+          <li><strong>晚餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E8%8F%AF%E5%91%B3%E9%B3%A5+%E5%8D%9A%E5%A4%9A%E9%A7%85%E5%89%8D%E5%BA%97" target="_blank" rel="noopener noreferrer">水炊料亭 博多華味鳥 博多站前店</a></strong>（需先訂位，<a href="https://tw.savorjapan.com/0004045152" target="_blank" rel="noopener noreferrer">歡迎幼童</a>）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E5%9C%B0%E3%81%AE%E3%81%86%E3%81%A9%E3%82%93+%E5%8D%9A%E5%A4%9A%E9%A7%85%E3%81%A1%E3%81%8B%E3%81%A6%E3%82%93" target="_blank" rel="noopener noreferrer">大地烏龍麵 博多站地下店</a></strong>（17:00–21:00，<a href="https://daichinoudon.com/shop/" target="_blank" rel="noopener noreferrer">官網</a>）。<br>👶 <strong>1 歲 6 個月推薦品項</strong>：華味鳥必點<strong>水炊雞肉丸、去骨嫩雞腿肉剪碎、煮軟高麗菜與收尾雞湯雜炊（未加柚子胡椒前先撈給寶寶）</strong>；大地烏龍麵點<strong>海帶芽烏龍麵（わかめうどん）或白湯烏龍麵</strong>（牛蒡天婦羅大人吃）。餐後逛 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%AD%E3%83%94%E3%82%A2+%E5%8D%9A%E5%A4%9A%E3%83%A8%E3%83%89%E3%83%90%E3%82%B7%E5%BA%97" target="_blank" rel="noopener noreferrer">LOPIA 博多友都八喜店</a></strong>（<a href="https://gogojp.tw/hakata-lopia/" target="_blank" rel="noopener noreferrer">僅收現金</a>）買常溫寶寶粥、鮮奶與香蕉。</li>
           <li><strong>雨備方案</strong>：全天改走全室內的 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%82%89%E3%82%89%E3%81%BD%E3%83%BC%E3%81%A8%E7%A6%8F%E5%B2%A1" target="_blank" rel="noopener noreferrer">LaLaport 福岡</a></strong> 或 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E9%A7%85" target="_blank" rel="noopener noreferrer">博多車站（KITTE／AMU PLAZA／地下街）</a></strong>，略過戶外櫛田神社。</li>
-          <li><strong>天氣穿搭與洗烘</strong>：預報 <strong>16°C / 7°C</strong>、晚間偶有零星小雨（50%，<a href="https://www.timeanddate.com/weather/japan/fukuoka/ext" target="_blank" rel="noopener noreferrer">福岡 14 天預報</a>）。內穿純棉薄長袖＋外搭防潑水防風外套，備折疊傘與推車防雨防風罩；可視需要用飯店 4F 投幣式洗脫烘。</li>
+          <li><strong>天氣穿搭與洗烘</strong>：11/25 最新預報 <strong>14–17°C / 8°C</strong>、陰天（降雨機率 2–30%，<a href="https://www.timeanddate.com/weather/japan/fukuoka/ext" target="_blank" rel="noopener noreferrer">Time and Date</a>、<a href="https://www.japan.travel/en/weather/kyushu/fukuoka/" target="_blank" rel="noopener noreferrer">JNTO</a>）。內穿純棉薄長袖＋外搭防風外套，備推車小蓋毯；可視需要用飯店 4F 投幣式洗脫烘。</li>
         </ul>
       </div>
 
-      <div class="col-block">
+      <div class="col-block" id="day-27">
         <h3>11/27（五）福岡市區｜麵包超人・公園賞楓與洗烘衣</h3>
         <ul class="clean-list">
-          <li><strong>早餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%9D%E3%83%BC%E3%81%9F%E3%81%BE+%E5%8D%9A%E5%A4%9A%E3%83%9E%E3%83%AB%E3%82%A4%E5%BA%97" target="_blank" rel="noopener noreferrer">ポーたま 博多マルイ店</a></strong>（07:00–21:00，現做溫熱<a href="https://prtimes.jp/main/html/rd/p/000000003.000106562.html" target="_blank" rel="noopener noreferrer">豬肉蛋飯糰</a>，分食玉子燒與白飯）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=THE+BLOSSOM+HAKATA+Premier" target="_blank" rel="noopener noreferrer">THE BLOSSOM HAKATA Premier</a></strong> 飯店西式麵包／優格輕食。</li>
+          <li><strong>早餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%9D%E3%83%BC%E3%81%9F%E3%81%BE+%E5%8D%9A%E5%A4%9A%E3%83%9E%E3%83%AB%E3%82%A4%E5%BA%97" target="_blank" rel="noopener noreferrer">ポーたま 博多マルイ店</a></strong>（07:00–21:00，<a href="https://prtimes.jp/main/html/rd/p/000000003.000106562.html" target="_blank" rel="noopener noreferrer">現做溫熱飯糰</a>）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=THE+BLOSSOM+HAKATA+Premier" target="_blank" rel="noopener noreferrer">THE BLOSSOM HAKATA Premier</a></strong> 飯店早餐。<br>👶 <strong>1 歲 6 個月推薦品項</strong>：ポーたま點<strong>原味飯糰（ポーたま）</strong>，將<strong>厚玉子燒與溫熱白飯</strong>剪小塊給寶寶（午餐肉較鹹大人吃）；飯店早餐選<strong>原味餐包、無糖優格、蒸蛋／炒蛋與切小塊水果</strong>。</li>
           <li><strong>10:00–12:30 親子景點</strong>：開門進 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E3%82%A2%E3%83%B3%E3%83%91%E3%83%B3%E3%83%9E%E3%83%B3%E3%81%93%E3%81%A9%E3%82%82%E3%83%9F%E3%83%A5%E3%83%BC%E3%82%B8%E3%82%A2%E3%83%A0" target="_blank" rel="noopener noreferrer">福岡麵包超人兒童博物館</a></strong>（<a href="https://www.fukuoka-anpanman.jp/tc/" target="_blank" rel="noopener noreferrer">10:00–17:00，1 歲以上須購票</a>，建議先線上購票）。</li>
-          <li><strong>午餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%82%AD%E3%83%A3%E3%83%8A%E3%83%AB%E3%82%B7%E3%83%86%E3%82%A3%E5%8D%9A%E5%A4%9A" target="_blank" rel="noopener noreferrer">博多運河城 美食街</a></strong>（蛋包飯、親子丼或日式定食，推車好進）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E3%82%A2%E3%83%B3%E3%83%91%E3%83%B3%E3%83%9E%E3%83%B3%E3%81%93%E3%81%A9%E3%82%82%E3%83%9F%E3%83%A5%E3%83%BC%E3%82%B8%E3%82%A2%E3%83%A0" target="_blank" rel="noopener noreferrer">麵包超人博物館館內餐廳</a></strong>（兒童清湯烏龍麵與低負擔點心）。</li>
+          <li><strong>午餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%82%AD%E3%83%A3%E3%83%8A%E3%83%AB%E3%82%B7%E3%83%86%E3%82%A3%E5%8D%9A%E5%A4%9A" target="_blank" rel="noopener noreferrer">博多運河城 美食街</a></strong>（推車好進）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E3%82%A2%E3%83%B3%E3%83%91%E3%83%B3%E3%83%9E%E3%83%B3%E3%81%93%E3%81%A9%E3%82%82%E3%83%9F%E3%83%A5%E3%83%BC%E3%82%B8%E3%82%A2%E3%83%A0" target="_blank" rel="noopener noreferrer">麵包超人博物館館內餐廳</a></strong>。<br>👶 <strong>1 歲 6 個月推薦品項</strong>：運河城點<strong>滑蛋蛋包飯（不淋過多番茄醬）或親子丼／白飯配蒸魚定食</strong>；館內點<strong>麵包超人兒童烏龍麵（アンパンマンうどん）或寶寶雞蛋糕／豆漿麵包</strong>。</li>
           <li><strong>13:00–16:30 午睡賞楓</strong>：推車午睡逛 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E6%BF%A0%E5%85%AC%E5%9C%92+%E7%A6%8F%E5%B2%A1" target="_blank" rel="noopener noreferrer">大濠公園</a></strong> ＋ <strong><a href="https://www.google.com/maps/search/?api=1&query=%E8%88%9E%E9%B6%B4%E5%85%AC%E5%9C%92+%E7%A6%8F%E5%B2%A1" target="_blank" rel="noopener noreferrer">舞鶴公園</a></strong>（平坦好推車，比 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%8B%95%E6%A4%8D%E7%89%A9%E5%9C%92" target="_blank" rel="noopener noreferrer">福岡市動植物園</a></strong> 省力；<strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%B4%85%E8%91%89%E5%85%AB%E5%B9%A1%E5%AE%AE+%E7%A6%8F%E5%B2%A1" target="_blank" rel="noopener noreferrer">紅葉八幡宮</a></strong> 視體力略過）。</li>
-          <li><strong>晚餐（飯類／非飯類 2 選 1）</strong>：逛 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A9%E7%A5%9E%E5%9C%B0%E4%B8%8B%E8%A1%97" target="_blank" rel="noopener noreferrer">天神地下街</a></strong> 後吃 ①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%81%A0%E3%81%97%E8%8C%B6%E6%BC%AC%E3%81%91+%E3%81%88%E3%82%93+%E5%A4%A9%E7%A5%9E%E5%9C%B0%E4%B8%8B%E8%A1%97%E5%BA%97" target="_blank" rel="noopener noreferrer">だし茶漬け＋肉うどん えん 天神地下街店</a></strong>（地下街內，<a href="https://byo.co.jp/dashichazuke-en/news.html?itemid=510&dispmid=874" target="_blank" rel="noopener noreferrer">溫熱高湯茶泡飯</a>，寶寶好入口）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E8%83%BD%E5%8F%A4%E3%81%86%E3%81%A9%E3%82%93+%E5%A4%A9%E7%A5%9E%E3%83%93%E3%83%AB%E5%BA%97" target="_blank" rel="noopener noreferrer">能古烏龍麵 天神ビル店</a></strong>（11:00–21:00，<a href="https://www.lavietaste.com/zh-TW/restaurant/207820" target="_blank" rel="noopener noreferrer">Lavie Taste</a>，細滑烏龍麵）。預報 <strong>17°C / 10°C</strong> 晴朗，商場暖氣強記得脫外套。</li>
+          <li><strong>晚餐（飯類／非飯類 2 選 1）</strong>：逛 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A9%E7%A5%9E%E5%9C%B0%E4%B8%8B%E8%A1%97" target="_blank" rel="noopener noreferrer">天神地下街</a></strong> 後吃 ①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%81%A0%E3%81%97%E8%8C%B6%E6%BC%AC%E3%81%91+%E3%81%88%E3%82%93+%E5%A4%A9%E7%A5%9E%E5%9C%B0%E4%B8%8B%E8%A1%97%E5%BA%97" target="_blank" rel="noopener noreferrer">だし茶漬け＋肉うどん えん 天神地下街店</a></strong>（<a href="https://byo.co.jp/dashichazuke-en/news.html?itemid=510&dispmid=874" target="_blank" rel="noopener noreferrer">高湯茶泡飯</a>）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E8%83%BD%E5%8F%A4%E3%81%86%E3%81%A9%E3%82%93+%E5%A4%A9%E7%A5%9E%E3%83%93%E3%83%AB%E5%BA%97" target="_blank" rel="noopener noreferrer">能古烏龍麵 天神ビル店</a></strong>（11:00–21:00，<a href="https://www.lavietaste.com/zh-TW/restaurant/207820" target="_blank" rel="noopener noreferrer">Lavie Taste</a>）。<br>👶 <strong>1 歲 6 個月推薦品項</strong>：茶泡飯選<strong>熟烤鮭魚或鶏飯風茶泡飯</strong>（避開生鯛魚、附的漬物不吃，高湯溫熱放涼給寶寶拌飯）；能古點<strong>湯烏龍麵＋玉子燒或蒸蔬菜配料</strong>。預報 <strong>20–21°C / 10–12°C</strong>、多雲，傍晚至夜間轉有零星陣雨（43–50%，<a href="https://www.timeanddate.com/weather/japan/fukuoka/ext" target="_blank" rel="noopener noreferrer">Time and Date</a>），記得帶折疊傘與推車雨罩，商場暖氣強進室內記得脫外套。</li>
           <li><strong>雨備方案</strong>：上午麵包超人博物館本為全室內；下午若下雨略過大濠／舞鶴公園，改去地鐵直達的 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E5%B8%82%E7%A7%91%E5%AD%A6%E9%A4%A8+%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%A6%8F%E5%B2%A1%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%85%AD%E6%9C%AC%E6%9D%BE4-2-1" target="_blank" rel="noopener noreferrer">福岡市科學館</a></strong>（09:30–21:30，<a href="https://japantravel.navitime.com/zh-tw/area/jp/spot/02301-t8302/" target="_blank" rel="noopener noreferrer">NAVITIME</a>）或 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%9E%E3%83%AA%E3%83%B3%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E6%B5%B7%E3%81%AE%E4%B8%AD%E9%81%93" target="_blank" rel="noopener noreferrer">海洋世界 海之中道</a></strong>（09:30–17:30，<a href="https://marine-world.jp/general-guide/regular-fees/" target="_blank" rel="noopener noreferrer">官網</a>），傍晚接 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A9%E7%A5%9E%E5%9C%B0%E4%B8%8B%E8%A1%97" target="_blank" rel="noopener noreferrer">天神地下街</a></strong>。</li>
           <li><strong>21:00 洗烘衣</strong>：於飯店 4 樓投幣式洗脫烘清洗前兩天衣物（<a href="https://www.jrk-hotels.co.jp/tw/Hakata_premier/facilities/" target="_blank" rel="noopener noreferrer">房內電視可看進度</a>），明天輕裝上路。</li>
         </ul>
       </div>
 
-      <div class="col-block">
+      <div class="col-block" id="day-28">
         <h3>11/28（六）太宰府 → 由布院｜取車早鳥參拜・午睡入山</h3>
         <ul class="clean-list">
-          <li><strong>早餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%9D%E3%83%BC%E3%81%9F%E3%81%BE+%E5%8D%9A%E5%A4%9A%E3%83%9E%E3%83%AB%E3%82%A4%E5%BA%97" target="_blank" rel="noopener noreferrer">ポーたま 博多マルイ店</a></strong>（07:00 開門外帶飯糰車上吃）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=THE+BLOSSOM+HAKATA+Premier" target="_blank" rel="noopener noreferrer">THE BLOSSOM HAKATA Premier</a></strong> 飯店麵包／優格輕食。08:00 至 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E9%A7%85" target="_blank" rel="noopener noreferrer">博多站</a></strong> 取車，備齊<strong>台灣駕照正本、日文譯本、護照正本</strong>（<a href="https://www.goodcars.tw/zh-TW/blog/article/japan-car-rental/japan-guide/japan-car-rental-complete-guide" target="_blank" rel="noopener noreferrer">不認國際駕照</a>），確認 <strong>CDW+NOC</strong>、兒童座椅、<strong>ETC 綠燈</strong>及<strong>紅色「レギュラー」油種</strong>。</li>
-          <li><strong>09:00–11:45 早鳥賞楓（上午防陣雨）</strong>：福岡上午預報 <strong>18°C / 12°C</strong>、偶有陣雨風大（44%，<a href="https://www.timeanddate.com/weather/japan/fukuoka/ext" target="_blank" rel="noopener noreferrer">福岡 14 天預報</a>），備防風防水外套與推車雨罩；午後山區轉晴（<strong>20°C / 12°C</strong>）。訪 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%A4%A9%E6%BA%80%E5%AE%AE" target="_blank" rel="noopener noreferrer">太宰府天滿宮</a></strong>、<strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%85%89%E6%98%8E%E7%A6%85%E5%AF%BA+%E5%A4%AA%E5%AE%B0%E5%BA%9C" target="_blank" rel="noopener noreferrer">光明禪寺</a></strong>（停 <a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%AA%E5%AE%B0%E5%BA%9C%E9%A7%90%E8%BB%8A%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC+%E7%A6%8F%E5%B2%A1%E7%9C%8C%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%B8%82%E5%AE%B0%E5%BA%9C1-12-8" target="_blank" rel="noopener noreferrer">太宰府駐車センター</a>：08:00–17:00、<a href="https://ev.gogo.gs/detail/1s6ypb7j" target="_blank" rel="noopener noreferrer">500 日圓</a>、850 格）與 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%AE%9D%E6%BA%80%E5%AE%AE+%E7%AB%88%E9%96%80%E7%A5%9E%E7%A4%BE" target="_blank" rel="noopener noreferrer">寶滿宮 竈門神社</a></strong>（停 <a href="https://www.google.com/maps/search/?api=1&query=%E7%AB%88%E9%96%80%E7%A5%9E%E7%A4%BE+%E9%A7%90%E8%BB%8A%E5%A0%B4+%E7%A6%8F%E5%B2%A1%E7%9C%8C%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%B8%82%E5%86%85%E5%B1%B1883" target="_blank" rel="noopener noreferrer">竈門神社 駐車場</a>：門口<a href="https://kyushu.letsgojp.com/archives/900607/" target="_blank" rel="noopener noreferrer">收費場</a>，帶背巾）。</li>
-          <li><strong>午餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%B1%B1%E7%94%B0%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%A8%E3%83%AA%E3%82%A2+%E4%B8%8B%E3%82%8A" target="_blank" rel="noopener noreferrer">山田服務區（下り）グリーン・キッチン</a></strong>（07:00–22:00，<a href="https://r.gnavi.co.jp/area/fukuoka/shokujidokoro/rs/" target="_blank" rel="noopener noreferrer">ぐるなび</a>，12:30 上高速吃親子丼、定食）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%81%8B%E3%81%95%E3%81%AE%E5%AE%B6+%E5%A4%AA%E5%AE%B0%E5%BA%9C" target="_blank" rel="noopener noreferrer">太宰府表參道（かさの家／茶屋烏龍麵）</a></strong>（11:30 吃熱湯烏龍麵與梅枝餅）。</li>
+          <li><strong>早餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%9D%E3%83%BC%E3%81%9F%E3%81%BE+%E5%8D%9A%E5%A4%9A%E3%83%9E%E3%83%AB%E3%82%A4%E5%BA%97" target="_blank" rel="noopener noreferrer">ポーたま 博多マルイ店</a></strong>（07:00 開門外帶）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=THE+BLOSSOM+HAKATA+Premier" target="_blank" rel="noopener noreferrer">THE BLOSSOM HAKATA Premier</a></strong> 飯店早餐。<br>👶 <strong>1 歲 6 個月推薦品項</strong>：外帶<strong>原味飯糰的白飯＋玉子燒</strong>或<strong>超商鮭魚三角飯糰（挑無芥末美乃滋）</strong>；非飯類選<strong>無糖優格、香蕉與原味小餐包</strong>。08:00 至 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E9%A7%85" target="_blank" rel="noopener noreferrer">博多站</a></strong> 取車，備齊<strong>台灣駕照正本、日文譯本、護照正本</strong>（<a href="https://www.goodcars.tw/zh-TW/blog/article/japan-car-rental/japan-guide/japan-car-rental-complete-guide" target="_blank" rel="noopener noreferrer">不認國際駕照</a>），確認 <strong>CDW+NOC</strong>、兒童座椅、<strong>ETC 綠燈</strong>及<strong>紅色「レギュラー」油種</strong>。</li>
+          <li><strong>09:00–11:45 早鳥賞楓（防雨防風）</strong>：11/25 最新預報福岡／太宰府 <strong>16°C / 10–11°C</strong>、陰有陣雨且風勢強勁（60–74%、陣風約 30 km/h，<a href="https://www.timeanddate.com/weather/japan/fukuoka/ext" target="_blank" rel="noopener noreferrer">Time and Date</a>），由布院 <strong>17°C / 9°C</strong>（61%，<a href="https://www.timeanddate.com/weather/@8604580/ext" target="_blank" rel="noopener noreferrer">由布院預報</a>）。必穿防潑水防風外套、備推車雨罩，若雨勢較大直接改走下方雨備。訪 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%A4%A9%E6%BA%80%E5%AE%AE" target="_blank" rel="noopener noreferrer">太宰府天滿宮</a></strong>、<strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%85%89%E6%98%8E%E7%A6%85%E5%AF%BA+%E5%A4%AA%E5%AE%B0%E5%BA%9C" target="_blank" rel="noopener noreferrer">光明禪寺</a></strong>（停 <a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%AA%E5%AE%B0%E5%BA%9C%E9%A7%90%E8%BB%8A%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC+%E7%A6%8F%E5%B2%A1%E7%9C%8C%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%B8%82%E5%AE%B0%E5%BA%9C1-12-8" target="_blank" rel="noopener noreferrer">太宰府駐車センター</a>：08:00–17:00、<a href="https://ev.gogo.gs/detail/1s6ypb7j" target="_blank" rel="noopener noreferrer">500 日圓</a>、850 格）與 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%AE%9D%E6%BA%80%E5%AE%AE+%E7%AB%88%E9%96%80%E7%A5%9E%E7%A4%BE" target="_blank" rel="noopener noreferrer">寶滿宮 竈門神社</a></strong>（停 <a href="https://www.google.com/maps/search/?api=1&query=%E7%AB%88%E9%96%80%E7%A5%9E%E7%A4%BE+%E9%A7%90%E8%BB%8A%E5%A0%B4+%E7%A6%8F%E5%B2%A1%E7%9C%8C%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%B8%82%E5%86%85%E5%B1%B1883" target="_blank" rel="noopener noreferrer">竈門神社 駐車場</a>：門口<a href="https://kyushu.letsgojp.com/archives/900607/" target="_blank" rel="noopener noreferrer">收費場</a>，帶背巾）。</li>
+          <li><strong>午餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%B1%B1%E7%94%B0%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%A8%E3%83%AA%E3%82%A2+%E4%B8%8B%E3%82%8A" target="_blank" rel="noopener noreferrer">山田服務區（下り）グリーン・キッチン</a></strong>（07:00–22:00，<a href="https://r.gnavi.co.jp/area/fukuoka/shokujidokoro/rs/" target="_blank" rel="noopener noreferrer">ぐるなび</a>）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%81%8B%E3%81%95%E3%81%AE%E5%AE%B6+%E5%A4%AA%E5%AE%B0%E5%BA%9C" target="_blank" rel="noopener noreferrer">太宰府表參道（かさの家／茶屋烏龍麵）</a></strong>。<br>👶 <strong>1 歲 6 個月推薦品項</strong>：山田 SA 點<strong>親子丼（請少醬汁）或白飯＋煎雞肉／豆腐味噌湯</strong>；表參道點<strong>茶屋原味湯烏龍麵（素うどん）</strong>剪碎，梅枝餅偏甜僅剝一小口外皮嚐味。</li>
           <li><strong>12:00–14:00 午睡入山</strong>：走大分自動車道往由布院（約 1.5 小時）。右駕「左小轉、右大轉」、遇「止まれ」完全煞停；紫道 ETC 限速 20 km/h 以下，右道超車後切回左側（<a href="https://matcha-jp.com/tw/23838" target="_blank" rel="noopener noreferrer">MATCHA</a>）。</li>
           <li><strong>雨備方案</strong>：若太宰府上午雨勢較大，改去緊鄰天滿宮的全室內 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E4%B9%9D%E5%B7%9E%E5%9B%BD%E7%AB%8B%E5%8D%9A%E7%89%A9%E9%A4%A8+%E7%A6%8F%E5%B2%A1%E7%9C%8C%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%B8%82%E7%9F%B3%E5%9D%824-7-2" target="_blank" rel="noopener noreferrer">九州國立博物館</a></strong>（09:30–17:00，<a href="https://www.kyuhaku.jp/visit/visit_top.html" target="_blank" rel="noopener noreferrer">官網</a>；有電扶梯與 1F 免費親子體驗區「あじっぱ」），或順路逛有遮雨廊道的 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E9%B3%A5%E6%A0%96%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%BB%E3%82%A2%E3%82%A6%E3%83%88%E3%83%AC%E3%83%83%E3%83%88" target="_blank" rel="noopener noreferrer">鳥栖 Premium Outlets</a></strong>。</li>
-          <li><strong>晚餐（飯類／非飯類 2 選 1）＋住宿</strong>：<strong>17:15 日落前</strong>入住 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%94%B1%E5%B8%83%E9%99%A2%E3%83%A6%E3%82%A6%E3%83%99%E3%83%AB%E3%83%9B%E3%83%86%E3%83%AB+%E5%A4%A7%E5%88%86%E7%9C%8C%E7%94%B1%E5%B8%83%E5%B8%82%E6%B9%AF%E5%B8%83%E9%99%A2%E7%94%BA%E5%B7%9D%E4%B8%8A1691-8" target="_blank" rel="noopener noreferrer">由布院 UBL 飯店</a></strong>（<a href="https://www.booking.com/hotel/jp/you-bu-yuan-yuuberuhoteru.zh-tw.html" target="_blank" rel="noopener noreferrer">免費停車</a>、有自助洗烘）。①【飯類】預訂<strong>飯店館內溫泉會席晚餐</strong>（白飯與蒸煮物，事前確認幼兒白飯／加熱寶寶粥）；②【非飯類】至 <strong><a href="https://www.google.com/maps/search/?api=1&query=A-COOP+%E3%82%86%E3%81%B5%E3%81%84%E3%82%93%E5%BA%97" target="_blank" rel="noopener noreferrer">A-COOP 湯布院店</a></strong> 超市買烏龍麵熟食、麵包與水果回房吃。</li>
+          <li><strong>晚餐（飯類／非飯類 2 選 1）＋住宿</strong>：<strong>17:15 日落前</strong>入住 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%94%B1%E5%B8%83%E9%99%A2%E3%83%A6%E3%82%A6%E3%83%99%E3%83%AB%E3%83%9B%E3%83%86%E3%83%AB+%E5%A4%A7%E5%88%86%E7%9C%8C%E7%94%B1%E5%B8%83%E5%B8%82%E6%B9%AF%E5%B8%83%E9%99%A2%E7%94%BA%E5%B7%9D%E4%B8%8A1691-8" target="_blank" rel="noopener noreferrer">由布院 UBL 飯店</a></strong>（<a href="https://www.booking.com/hotel/jp/you-bu-yuan-yuuberuhoteru.zh-tw.html" target="_blank" rel="noopener noreferrer">免費停車</a>、有自助洗烘）。①【飯類】預訂<strong>飯店館內溫泉會席晚餐</strong>；②【非飯類】至 <strong><a href="https://www.google.com/maps/search/?api=1&query=A-COOP+%E3%82%86%E3%81%B5%E3%81%84%E3%82%93%E5%BA%97" target="_blank" rel="noopener noreferrer">A-COOP 湯布院店</a></strong> 超市採買。<br>👶 <strong>1 歲 6 個月推薦品項</strong>：會席餐分食<strong>白飯、茶碗蒸、清蒸魚／煮軟蘿蔔與味噌湯</strong>（事前請飯店準備幼兒白飯）；A-COOP 買<strong>微波即食烏龍麵、原味吐司、蒸地瓜與香蕉</strong>。</li>
         </ul>
       </div>
 
-      <div class="col-block">
+      <div class="col-block" id="day-29">
         <h3>11/29（日）由布院 → 九州自然動物園 → 日田｜晨霧・野生動物・進擊的巨人</h3>
         <ul class="clean-list">
-          <li><strong>07:00–08:30 晨霧＋早餐（飯類／非飯類 2 選 1）</strong>：預報 <strong>21°C / 12°C</strong> 晴朗乾燥（4%，<a href="https://www.timeanddate.com/weather/@1848121/ext" target="_blank" rel="noopener noreferrer">由布院 14 天預報</a>）。清晨湖畔微涼（12°C），幫寶寶戴毛帽＋鋪棉背心＋防風外套與推車防風罩，步行 6 分鐘至 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E9%B1%97%E6%B9%96+%E7%94%B1%E5%B8%83%E9%99%A2" target="_blank" rel="noopener noreferrer">金鱗湖</a></strong>（開車可停 <a href="https://www.google.com/maps/search/?api=1&query=%E3%82%BB%E3%82%A4%E3%83%AF%E3%83%91%E3%83%BC%E3%82%AF+%E9%87%91%E9%B1%97%E6%B9%96+%E5%A4%A7%E5%88%86%E7%9C%8C%E7%94%B1%E5%B8%83%E5%B8%82%E6%B9%AF%E5%B8%83%E9%99%A2%E7%94%BA%E5%B7%9D%E4%B8%8A1607-1" target="_blank" rel="noopener noreferrer">セイワパーク 金鱗湖</a>：假日 900／平日 400 日圓，<a href="https://japantravel.navitime.com/zh-tw/area/jp/spot/60045-440/" target="_blank" rel="noopener noreferrer">Seiwa</a>）。早餐：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%94%B1%E5%B8%83%E9%99%A2%E3%83%A6%E3%82%A6%E3%83%99%E3%83%AB%E3%83%9B%E3%83%86%E3%83%AB" target="_blank" rel="noopener noreferrer">由布院 UBL 飯店</a></strong> 館內日式白飯早餐；②【非飯類】湖畔 <strong><a href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+La+Ruche+%E9%87%91%E9%B1%97%E6%B9%96" target="_blank" rel="noopener noreferrer">Café La Ruche</a></strong> 麵包與濃湯輕食。</li>
+          <li><strong>07:00–08:30 晨霧＋早餐（飯類／非飯類 2 選 1）</strong>：預報大幅降溫！由布院 <strong>13°C / 3°C</strong>、清晨偶有零星小雨（52%），隨後轉晴（<a href="https://www.timeanddate.com/weather/@8604580/ext" target="_blank" rel="noopener noreferrer">由布院預報</a>）；日田 <strong>18°C / 6°C</strong>（<a href="https://www.predictwind.com/weather/japan/ita-prefecture/hita" target="_blank" rel="noopener noreferrer">PredictWind</a>）。清晨金鱗湖僅 <strong>3°C</strong>，務必幫寶寶戴遮耳毛帽＋穿發熱／刷毛中層＋防風羽絨外套與推車防風罩（小蓋毯），步行 6 分鐘至 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E9%B1%97%E6%B9%96+%E7%94%B1%E5%B8%83%E9%99%A2" target="_blank" rel="noopener noreferrer">金鱗湖</a></strong>（開車可停 <a href="https://www.google.com/maps/search/?api=1&query=%E3%82%BB%E3%82%A4%E3%83%AF%E3%83%91%E3%83%BC%E3%82%AF+%E9%87%91%E9%B1%97%E6%B9%96+%E5%A4%A7%E5%88%86%E7%9C%8C%E7%94%B1%E5%B8%83%E5%B8%82%E6%B9%AF%E5%B8%83%E9%99%A2%E7%94%BA%E5%B7%9D%E4%B8%8A1607-1" target="_blank" rel="noopener noreferrer">セイワパーク 金鱗湖</a>：假日 900／平日 400 日圓，<a href="https://japantravel.navitime.com/zh-tw/area/jp/spot/60045-440/" target="_blank" rel="noopener noreferrer">Seiwa</a>）。早餐：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%94%B1%E5%B8%83%E9%99%A2%E3%83%A6%E3%82%A6%E3%83%99%E3%83%AB%E3%83%9B%E3%83%86%E3%83%AB" target="_blank" rel="noopener noreferrer">由布院 UBL 飯店</a></strong> 館內早餐；②【非飯類】湖畔 <strong><a href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+La+Ruche+%E9%87%91%E9%B1%97%E6%B9%96" target="_blank" rel="noopener noreferrer">Café La Ruche</a></strong>。<br>👶 <strong>1 歲 6 個月推薦品項</strong>：飯店選<strong>熱白飯、烤鮭魚（挑刺）、玉子燒、溫豆腐</strong>；Café La Ruche 選<strong>原味可頌／軟麵包撕小塊沾玉米濃湯</strong>（避開過多奶油與含糖果醬）。</li>
           <li><strong>09:00–11:30 九州自然動物園</strong>：退房後開車約 25–30 分鐘抵達 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E4%B9%9D%E5%B7%9E%E8%87%AA%E7%84%B6%E5%8B%95%E7%89%A9%E5%85%AC%E5%9C%92%E3%82%A2%E3%83%95%E3%83%AA%E3%82%AB%E3%83%B3%E3%82%B5%E3%83%95%E3%82%A1%E3%83%AA+%E5%A4%A7%E5%88%86%E7%9C%8C%E5%AE%87%E4%BD%90%E5%B8%82%E5%AE%89%E5%BF%83%E9%99%A2%E7%94%BA%E5%8D%97%E7%95%912-1755-1" target="_blank" rel="noopener noreferrer">九州自然動物公園（アフリカンサファリ）</a></strong>（11 月 08:50 售票、09:15–16:00 營業，<a href="https://africansafari.co.jp/information/" target="_blank" rel="noopener noreferrer">官網</a>；<strong>1,500 格免費停車</strong>，<a href="https://www.city.usa.oita.jp/tourist/touristspot/touristspot2/touristspot3/10181.html" target="_blank" rel="noopener noreferrer">宇佐市</a>）。4 歲以下免費；<strong>直接自駕開進野生動物區</strong>（約 35 分鐘，車內吹暖氣且寶寶可隨時喝水）或搭叢林巴士（<a href="https://africansafari.co.jp/taiwan/" target="_blank" rel="noopener noreferrer">未滿 4 歲須坐大人膝上、車內禁飲食</a>），結束逛可愛動物區（若想順逛 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E6%B9%AF%E3%81%AE%E5%9D%AA%E8%A1%97%E9%81%93+%E7%94%B1%E5%B8%83%E9%99%A2" target="_blank" rel="noopener noreferrer">湯之坪街道</a></strong> 建議精簡停留以免午後趕路）。</li>
-          <li><strong>午餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E4%B9%9D%E5%B7%9E%E8%87%AA%E7%84%B6%E5%8B%95%E7%89%A9%E5%85%AC%E5%9C%92%E3%82%A2%E3%83%95%E3%83%AA%E3%82%AB%E3%83%B3%E3%82%B5%E3%83%95%E3%82%A1%E3%83%AA" target="_blank" rel="noopener noreferrer">九州自然動物園 園內餐廳</a></strong>（漢堡排白飯定食／溫和咖哩飯，吃完直接上車午睡最順路）或 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%94%B1%E5%B8%83%E3%81%BE%E3%81%B6%E3%81%97+%E5%BF%83+%E9%87%91%E9%B1%97%E6%B9%96%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener noreferrer">由布釜飯心 金鱗湖本店</a></strong>（原味釜飯）；②【非飯類】回由布院吃 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%81%93%E3%81%AF%E3%82%8B%E3%81%86%E3%81%A9%E3%82%93+%E7%94%B1%E5%B8%83%E9%99%A2" target="_blank" rel="noopener noreferrer">小春烏龍麵</a></strong>（14:30 關，兒童套餐清湯烏龍麵）。</li>
+          <li><strong>午餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E4%B9%9D%E5%B7%9E%E8%87%AA%E7%84%B6%E5%8B%95%E7%89%A9%E5%85%AC%E5%9C%92%E3%82%A2%E3%83%95%E3%83%AA%E3%82%AB%E3%83%B3%E3%82%B5%E3%83%95%E3%82%A1%E3%83%AA" target="_blank" rel="noopener noreferrer">九州自然動物園 園內餐廳</a></strong>（吃完直接上車午睡最順路）或 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%94%B1%E5%B8%83%E3%81%BE%E3%81%B6%E3%81%97+%E5%BF%83+%E9%87%91%E9%B1%97%E6%B9%96%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener noreferrer">由布釜飯心 金鱗湖本店</a></strong>；②【非飯類】回由布院吃 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%81%93%E3%81%AF%E3%82%8B%E3%81%86%E3%81%A9%E3%82%93+%E7%94%B1%E5%B8%83%E9%99%A2" target="_blank" rel="noopener noreferrer">小春烏龍麵</a></strong>（14:30 關）。<br>👶 <strong>1 歲 6 個月推薦品項</strong>：動物園餐廳點<strong>兒童甘口咖哩飯或漢堡排白飯定食（醬汁分開）</strong>；釜飯心取<strong>未加醬料的原味釜飯＋嫩切地雞肉（避開辛辣柚子胡椒）</strong>；小春點<strong>兒童烏龍麵套餐</strong>。</li>
           <li><strong>12:30–17:00 午睡→巨人三點</strong>：載離線地圖開往日田（約 1 小時 15 分鐘午睡；油表剩半白天先補油），務必先看 17:00 閉館的點：<strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E5%B1%B1%E3%83%80%E3%83%A0+%E9%A7%90%E8%BB%8A%E5%A0%B4+%E5%A4%A7%E5%88%86%E7%9C%8C%E6%97%A5%E7%94%B0%E5%B8%82%E5%A4%A7%E5%B1%B1%E7%94%BA%E8%A5%BF%E5%A4%A7%E5%B1%B12008-1" target="_blank" rel="noopener noreferrer">巨人雕像（大山大壩）</a></strong>（<a href="https://shingeki-hita.com/spot/001.html" target="_blank" rel="noopener noreferrer">免費</a>）→ <strong><a href="https://www.google.com/maps/search/?api=1&query=%E9%81%93%E3%81%AE%E9%A7%85+%E6%B0%B4%E8%BE%BA%E3%81%AE%E9%83%B7%E3%81%8A%E3%81%8A%E3%82%84%E3%81%BE+%E5%A4%A7%E5%88%86%E7%9C%8C%E6%97%A5%E7%94%B0%E5%B8%82%E5%A4%A7%E5%B1%B1%E7%94%BA%E8%A5%BF%E5%A4%A7%E5%B1%B14106" target="_blank" rel="noopener noreferrer">本館（道之驛 水邊之鄉大山，17:00 閉館）</a></strong>（<a href="https://shingeki-hita.com/spot/017.html" target="_blank" rel="noopener noreferrer">免費</a>、有尿布台）→ <strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%82%B5%E3%83%83%E3%83%9D%E3%83%AD%E3%83%93%E3%83%BC%E3%83%AB%E4%B9%9D%E5%B7%9E%E6%97%A5%E7%94%B0%E5%B7%A5%E5%A0%B4+%E5%A4%A7%E5%88%86%E7%9C%8C%E6%97%A5%E7%94%B0%E5%B8%82%E5%A4%A7%E5%AD%97%E9%AB%98%E7%80%AC6979" target="_blank" rel="noopener noreferrer">新館 ANNEX（札幌啤酒工廠，開至 19:00）</a></strong>（免費）。</li>
           <li><strong>雨備方案</strong>：<strong><a href="https://www.google.com/maps/search/?api=1&query=%E4%B9%9D%E5%B7%9E%E8%87%AA%E7%84%B6%E5%8B%95%E7%89%A9%E5%85%AC%E5%9C%92%E3%82%A2%E3%83%95%E3%83%AA%E3%82%AB%E3%83%B3%E3%82%B5%E3%83%95%E3%82%A1%E3%83%AA" target="_blank" rel="noopener noreferrer">九州自然動物園</a></strong>可自駕入園＋全天候叢林巴士（<a href="https://www.city.usa.oita.jp/tourist/touristspot/touristspot2/touristspot3/10181.html" target="_blank" rel="noopener noreferrer">雨天照常營運</a>），日田巨人本館與新館 ANNEX 亦皆為全室內，只需略過室外的金鱗湖與大山大壩雕像即可。</li>
-          <li><strong>晚餐（飯類／非飯類 2 選 1）＋住宿</strong>：入住 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E4%BA%AC%E9%83%BD%E3%81%AE%E6%B9%AF+%E3%81%BF%E3%81%8F%E3%81%BE%E3%83%9B%E3%83%86%E3%83%AB+%E5%A4%A7%E5%88%86%E7%9C%8C%E6%97%A5%E7%94%B0%E5%B8%82%E9%9A%881-3-19" target="_blank" rel="noopener noreferrer">小京都之湯 みくま飯店</a></strong>（<a href="https://mikuma.jp/access/" target="_blank" rel="noopener noreferrer">免費 60 格</a>，無洗衣機）。①【飯類】<strong>飯店館內溫泉晚餐</strong>（白飯與和食）或 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%82%B8%E3%83%A7%E3%82%A4%E3%83%95%E3%83%AB+%E6%97%A5%E7%94%B0%E5%BA%97" target="_blank" rel="noopener noreferrer">Joyfull 日田店</a></strong>（兒童飯食／漢堡排白飯）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E8%8D%89%E5%85%AB%E8%95%8E%E9%BA%A6+%E6%97%A5%E7%94%B0%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener noreferrer">草八蕎麥 日田本店</a></strong>（週日 11:30–21:00，<a href="https://www.jalan.net/kankou/spt_44204fc3562036837/" target="_blank" rel="noopener noreferrer">じゃらん</a>，熱湯蕎麥麵／烏龍麵）。</li>
+          <li><strong>晚餐（飯類／非飯類 2 選 1）＋住宿</strong>：入住 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E4%BA%AC%E9%83%BD%E3%81%AE%E6%B9%AF+%E3%81%BF%E3%81%8F%E3%81%BE%E3%83%9B%E3%83%86%E3%83%AB+%E5%A4%A7%E5%88%86%E7%9C%8C%E6%97%A5%E7%94%B0%E5%B8%82%E9%9A%881-3-19" target="_blank" rel="noopener noreferrer">小京都之湯 みくま飯店</a></strong>（<a href="https://mikuma.jp/access/" target="_blank" rel="noopener noreferrer">免費 60 格</a>，無洗衣機）。①【飯類】<strong>飯店館內溫泉晚餐</strong>或 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%82%B8%E3%83%A7%E3%82%A4%E3%83%95%E3%83%AB+%E6%97%A5%E7%94%B0%E5%BA%97" target="_blank" rel="noopener noreferrer">Joyfull 日田店</a></strong>；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E8%8D%89%E5%85%AB%E8%95%8E%E9%BA%A6+%E6%97%A5%E7%94%B0%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener noreferrer">草八蕎麥 日田本店</a></strong>（週日 11:30–21:00，<a href="https://www.jalan.net/kankou/spt_44204fc3562036837/" target="_blank" rel="noopener noreferrer">じゃらん</a>）。<br>👶 <strong>1 歲 6 個月推薦品項</strong>：飯店分食<strong>白飯、茶碗蒸與煮物</strong>；Joyfull 點<strong>兒童低敏咖哩飯／漢堡排兒童餐</strong>；草八點<strong>溫熱烏龍麵（うどん）或玉子丼</strong>（若尚未吃過蕎麥，先選烏龍麵避開蕎麥過敏風險）。</li>
         </ul>
       </div>
 
-      <div class="col-block">
+      <div class="col-block" id="day-30">
         <h3>11/30（一）秋月城跡 → 博多｜平日賞楓・大河壽司與還車</h3>
         <ul class="clean-list">
-          <li><strong>早餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E4%BA%AC%E9%83%BD%E3%81%AE%E6%B9%AF+%E3%81%BF%E3%81%8F%E3%81%BE%E3%83%9B%E3%83%86%E3%83%AB" target="_blank" rel="noopener noreferrer">小京都之湯 みくま飯店</a></strong> 館內日式白飯早餐；②【非飯類】<strong>日田超商外帶吐司／麵包＋鮮奶</strong>（提早出發）。</li>
-          <li><strong>09:00–11:30 平日賞楓</strong>：預報 <strong>16–21°C / 11–12°C</strong> 晴朗乾爽（4–5%）。開往 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%A7%8B%E6%9C%88%E5%9F%8E%E8%B7%A1" target="_blank" rel="noopener noreferrer">秋月城跡</a></strong> 與 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E6%9D%89%E3%81%AE%E9%A6%AC%E5%A0%B4+%E7%A7%8B%E6%9C%88" target="_blank" rel="noopener noreferrer">杉之馬場</a></strong>，停 <a href="https://www.google.com/maps/search/?api=1&query=%E7%A7%8B%E6%9C%88%E9%A7%90%E8%BB%8A%E5%A0%B4+%E7%A6%8F%E5%B2%A1%E7%9C%8C%E6%9C%9D%E5%80%89%E5%B8%82%E7%A7%8B%E6%9C%88%E9%87%8E%E9%B3%A5" target="_blank" rel="noopener noreferrer">秋月駐車場</a>（120 格、400 日圓，<a href="https://japantravel.navitime.com/zh-tw/area/jp/spot/02301-1310378/" target="_blank" rel="noopener noreferrer">NAVITIME</a>），走黑門紅葉隧道（帶背巾）。</li>
-          <li><strong>午餐（飯類／非飯類 2 選 1）</strong>：12:00 北上回福岡（約 1 小時午睡；都市高速限速 80 km/h）。①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E6%9C%AC%E6%A0%BC%E5%9B%9E%E8%BB%A2%E5%AF%BF%E5%8F%B8+%E5%A4%A7%E6%B2%B3%E3%81%99%E3%81%97+%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%8D%9A%E5%A4%9A%E5%8C%BA%E8%A5%BF%E6%9C%88%E9%9A%884-8-2" target="_blank" rel="noopener noreferrer">本格迴轉壽司 大河壽司</a></strong>（13:30 離峰吃玉子燒／稻荷壽司／茶碗蒸與味噌湯，附 <a href="https://i7tou.com/fukuoka-honkaku-conveyor-belt-sushi-taiga-sushi/" target="_blank" rel="noopener noreferrer">46 格免費停車</a>）或 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E9%BB%92%E9%96%80%E8%8C%B6%E5%B1%8B+%E7%A7%8B%E6%9C%88" target="_blank" rel="noopener noreferrer">秋月 黒門茶屋</a></strong>（炊飯／親子丼）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E6%9C%88%E3%81%AE%E5%B3%A0+%E7%A7%8B%E6%9C%88" target="_blank" rel="noopener noreferrer">秋月 月の峠（天然酵母麵包）</a></strong> 或周邊烏龍麵茶屋。</li>
+          <li><strong>早餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E4%BA%AC%E9%83%BD%E3%81%AE%E6%B9%AF+%E3%81%BF%E3%81%8F%E3%81%BE%E3%83%9B%E3%83%86%E3%83%AB" target="_blank" rel="noopener noreferrer">小京都之湯 みくま飯店</a></strong> 館內早餐；②【非飯類】<strong>日田超商外帶輕食</strong>。<br>👶 <strong>1 歲 6 個月推薦品項</strong>：飯店早餐選<strong>白飯、溫泉蛋／玉子燒、烤魚肉與煮軟海帶芽味噌湯</strong>；超商買<strong>原味超熟吐司、小餐包、無糖優格與鮮奶／香蕉</strong>。</li>
+          <li><strong>09:00–11:30 平日賞楓</strong>：預報晴朗乾爽（0–10%），早晚極冷（由布院 <strong>16°C / 2°C</strong>、日田 <strong>21°C / 6°C</strong>、福岡 <strong>17–19°C / 6°C</strong>，<a href="https://www.timeanddate.com/weather/japan/fukuoka/ext" target="_blank" rel="noopener noreferrer">Time and Date</a>），上午逛秋月城跡注意洋蔥式保暖。開往 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%A7%8B%E6%9C%88%E5%9F%8E%E8%B7%A1" target="_blank" rel="noopener noreferrer">秋月城跡</a></strong> 與 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E6%9D%89%E3%81%AE%E9%A6%AC%E5%A0%B4+%E7%A7%8B%E6%9C%88" target="_blank" rel="noopener noreferrer">杉之馬場</a></strong>，停 <a href="https://www.google.com/maps/search/?api=1&query=%E7%A7%8B%E6%9C%88%E9%A7%90%E8%BB%8A%E5%A0%B4+%E7%A6%8F%E5%B2%A1%E7%9C%8C%E6%9C%9D%E5%80%89%E5%B8%82%E7%A7%8B%E6%9C%88%E9%87%8E%E9%B3%A5" target="_blank" rel="noopener noreferrer">秋月駐車場</a>（120 格、400 日圓，<a href="https://japantravel.navitime.com/zh-tw/area/jp/spot/02301-1310378/" target="_blank" rel="noopener noreferrer">NAVITIME</a>），走黑門紅葉隧道（帶背巾）。</li>
+          <li><strong>午餐（飯類／非飯類 2 選 1）</strong>：12:00 北上回福岡（約 1 小時午睡；都市高速限速 80 km/h）。①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E6%9C%AC%E6%A0%BC%E5%9B%9E%E8%BB%A2%E5%AF%BF%E5%8F%B8+%E5%A4%A7%E6%B2%B3%E3%81%99%E3%81%97+%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%8D%9A%E5%A4%9A%E5%8C%BA%E8%A5%BF%E6%9C%88%E9%9A%884-8-2" target="_blank" rel="noopener noreferrer">本格迴轉壽司 大河壽司</a></strong>（附 <a href="https://i7tou.com/fukuoka-honkaku-conveyor-belt-sushi-taiga-sushi/" target="_blank" rel="noopener noreferrer">46 格免費停車</a>）或 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E9%BB%92%E9%96%80%E8%8C%B6%E5%B1%8B+%E7%A7%8B%E6%9C%88" target="_blank" rel="noopener noreferrer">秋月 黒門茶屋</a></strong>；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E6%9C%88%E3%81%AE%E5%B3%A0+%E7%A7%8B%E6%9C%88" target="_blank" rel="noopener noreferrer">秋月 月の峠（天然酵母麵包）</a></strong>（注意週一平日 <a href="https://www.crossroadfukuoka.jp/spot/10331" target="_blank" rel="noopener noreferrer">12:00 才開門</a>）或周邊烏龍麵茶屋。<br>👶 <strong>1 歲 6 個月推薦品項</strong>：大河壽司點<strong>全熟品項：茶碗蒸、玉子燒壽司、熟蝦壽司、豆皮壽司（稻荷）與味噌湯</strong>（避開生魚片）；秋月點<strong>原味炊飯／親子丼</strong>或<strong>月の峠原味餐包（避開咖哩麵包）</strong>。</li>
           <li><strong>15:30–17:30 加滿油還車</strong>：認明<strong>紅色「レギュラー」油槍</strong>（勿加綠色「軽油」），找人工站說 <span class="jp-phrase">「レギュラー、満タンでお願いします」</span> 並留收據（<a href="https://joelin.cc/p/8348" target="_blank" rel="noopener noreferrer">加油日語指南</a>）。入住 <strong><a href="https://www.google.com/maps/search/?api=1&query=ALPHABED+INN+%E5%8D%9A%E5%A4%9A%E9%A7%85%E5%89%8D" target="_blank" rel="noopener noreferrer">ALPHABED INN 博多駅前</a></strong>（房內有洗衣機＋浴室乾燥）。</li>
           <li><strong>雨備方案</strong>：若遇雨不走秋月石板坡道，改逛順路的 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E9%B3%A5%E6%A0%96%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%BB%E3%82%A2%E3%82%A6%E3%83%88%E3%83%AC%E3%83%83%E3%83%88" target="_blank" rel="noopener noreferrer">鳥栖 Premium Outlets</a></strong> 或提早回市區逛全室內的 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%82%AD%E3%83%A3%E3%83%8A%E3%83%AB%E3%82%B7%E3%83%86%E3%82%A3%E5%8D%9A%E5%A4%9A" target="_blank" rel="noopener noreferrer">博多運河城</a></strong>。</li>
-          <li><strong>晚餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%9E%E3%83%AB%E3%83%A2%E3%82%AD%E3%83%83%E3%83%81%E3%83%B3+KITTE%E5%8D%9A%E5%A4%9A%E5%BA%97" target="_blank" rel="noopener noreferrer">マルモキッチン KITTE博多店</a></strong> 或 <strong><a href="https://www.google.com/maps/search/?api=1&query=JR%E5%8D%9A%E5%A4%9A%E3%82%B7%E3%83%86%E3%82%A3+%E3%81%8F%E3%81%86%E3%81%A6%E3%82%93" target="_blank" rel="noopener noreferrer">博多車站 9F–10F くうてん美食街</a></strong>（鮭魚親子丼、白飯定食，推車友善）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%9B%A0%E5%B9%A1%E3%81%86%E3%81%A9%E3%82%93+%E5%8D%9A%E5%A4%9A1%E7%95%AA%E8%A1%97%E5%BA%97" target="_blank" rel="noopener noreferrer">因幡烏龍麵 博多1番街店</a></strong>（清湯烏龍麵）。</li>
+          <li><strong>晚餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%9E%E3%83%AB%E3%83%A2%E3%82%AD%E3%83%83%E3%83%81%E3%83%B3+KITTE%E5%8D%9A%E5%A4%9A%E5%BA%97" target="_blank" rel="noopener noreferrer">マルモキッチン KITTE博多店</a></strong> 或 <strong><a href="https://www.google.com/maps/search/?api=1&query=JR%E5%8D%9A%E5%A4%9A%E3%82%B7%E3%83%86%E3%82%A3+%E3%81%8F%E3%81%86%E3%81%A6%E3%82%93" target="_blank" rel="noopener noreferrer">博多車站 9F–10F くうてん美食街</a></strong>（推車友善）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E5%9B%A0%E5%B9%A1%E3%81%86%E3%81%A9%E3%82%93+%E5%8D%9A%E5%A4%9A1%E7%95%AA%E8%A1%97%E5%BA%97" target="_blank" rel="noopener noreferrer">因幡烏龍麵 博多1番街店</a></strong>。<br>👶 <strong>1 歲 6 個月推薦品項</strong>：マルモ選<strong>兒童餐／熟鮭魚丼＋蔬菜豚汁</strong>，くうてん可選<strong>牛舌定食（分食麥飯與牛尾清湯）或和食蒸菜定食</strong>；因幡點<strong>原味／豆皮烏龍麵剪碎</strong>。</li>
         </ul>
       </div>
 
-      <div class="col-block">
+      <div class="col-block" id="day-01">
         <h3>12/1（二）福岡 → 台灣｜搭計程車直達國際線返台</h3>
         <ul class="clean-list">
-          <li><strong>早餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%9D%E3%83%BC%E3%81%9F%E3%81%BE+%E5%8D%9A%E5%A4%9A%E3%83%9E%E3%83%AB%E3%82%A4%E5%BA%97" target="_blank" rel="noopener noreferrer">ポーたま 博多マルイ店</a></strong>（07:00 開門外帶飯糰）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%A9%BA%E6%B8%AF+%E5%9B%BD%E9%9A%9B%E7%B7%9A%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB" target="_blank" rel="noopener noreferrer">福岡機場國際線航廈 美食區</a></strong>（<a href="https://www.crossroadfukuoka.jp/tw/inbound-shop/15128" target="_blank" rel="noopener noreferrer">4F／3F HAKATA FOOD HALL</a>，託運安檢後在候機區吃烏龍麵、拉麵或三明治輕食）。</li>
+          <li><strong>早餐（飯類／非飯類 2 選 1）</strong>：①【飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%9D%E3%83%BC%E3%81%9F%E3%81%BE+%E5%8D%9A%E5%A4%9A%E3%83%9E%E3%83%AB%E3%82%A4%E5%BA%97" target="_blank" rel="noopener noreferrer">ポーたま 博多マルイ店</a></strong>（07:00 開門外帶）；②【非飯類】<strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%A9%BA%E6%B8%AF+%E5%9B%BD%E9%9A%9B%E7%B7%9A%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB" target="_blank" rel="noopener noreferrer">福岡機場國際線航廈 美食區</a></strong>（<a href="https://www.crossroadfukuoka.jp/tw/inbound-shop/15128" target="_blank" rel="noopener noreferrer">4F／3F HAKATA FOOD HALL</a>）。<br>👶 <strong>1 歲 6 個月推薦品項</strong>：ポーたま一樣取<strong>原味飯糰的玉子燒＋熱白飯</strong>；機場美食區點<strong>原味清湯烏龍麵（うどん）或柔軟雞蛋三明治（去邊切小塊）</strong>，登機前吃飽最安穩。</li>
           <li><strong>09:15–09:45 直達機場</strong>：搭計程車直達 <strong><a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%A9%BA%E6%B8%AF+%E5%9B%BD%E9%9A%9B%E7%B7%9A%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB" target="_blank" rel="noopener noreferrer">福岡機場國際線航廈</a></strong>（15–20 分鐘；地鐵僅達國內線需再轉接駁巴士，帶推車行李搭計程車最省力，<a href="https://www.fukuoka-airport.jp/tw/target/beginner.html" target="_blank" rel="noopener noreferrer">福岡機場官網</a>）。</li>
-          <li><strong>09:45–13:50 返台</strong>：預報 <strong>16°C / 11°C</strong> 晴朗（3%）。託運、安檢與免稅店採買（結帳選「日圓」刷卡），12:15 起飛、13:50 返抵桃園機場第二航廈。</li>
+          <li><strong>09:15–13:50 退稅與返台</strong>：預報 <strong>21–22°C / 10–13°C</strong> 晴時多雲溫暖（2–20%，<a href="https://www.timeanddate.com/weather/japan/fukuoka/ext" target="_blank" rel="noopener noreferrer">Time and Date</a>、<a href="https://www.japan.travel/en/weather/kyushu/fukuoka/" target="_blank" rel="noopener noreferrer">JNTO</a>）。<strong>新制注意</strong>：日本自 2026/11/1 起改採「先付含稅價、離境機場海關查驗後退稅」（<a href="https://www.customs.go.jp/kaigairyoko/taxrefund.htm" target="_blank" rel="noopener noreferrer">日本海關新制</a>），若市區有辦免稅，建議提早至 <strong>09:15–09:30</strong> 抵國際線預留查驗時間；免稅店結帳選「日圓」刷卡，12:15 起飛、13:50 返抵桃園機場第二航廈。</li>
         </ul>
       </div>
     </div>
   </section>
 
   <!-- Section 2: Essential Visual & Emergency Reference -->
-  <section class="span-12 sec">
+  <section class="span-12 sec" id="ref-safety">
     <h2>行前準備與自駕安全速查（加油油槍圖解・現金刷卡・緊急應變）</h2>
     <figure class="svg-figure span-12">
       <p class="fig-title">自助加油站油槍為紅色普通汽油、黃色高級汽油，綠色「軽油」實為柴油</p>
-      <svg viewBox="0 0 680 230" width="100%" role="img" aria-label="日本自助加油站三種油槍顏色與油種對照圖">
+      <p class="mobile-scroll-hint">← 左右滑動查看完整圖表 →</p>
+      <div class="svg-scroll">
+        <svg viewBox="0 0 680 230" width="100%" role="img" aria-label="日本自助加油站三種油槍顏色與油種對照圖">
         <rect x="0" y="18" width="18" height="44" rx="4" fill="#C93428"/>
         <text x="32" y="38" font-family="Plus Jakarta Sans, Noto Sans TC, sans-serif" font-size="16" font-weight="700" fill="#141A17">紅色｜レギュラー (Regular)</text>
         <text x="32" y="58" font-family="Plus Jakarta Sans, Noto Sans TC, sans-serif" font-size="14" fill="#2B3731">一般無鉛汽油 — 多數租賃小客車使用此油種</text>
@@ -518,6 +745,7 @@ ol.sources-list li {
         <rect x="460" y="176" width="196" height="32" rx="16" fill="#141A17"/>
         <text x="558" y="197" text-anchor="middle" font-family="Google Sans Code, Noto Sans TC, monospace" font-size="13" font-weight="500" fill="#FFFFFF">僅限柴油車</text>
       </svg>
+      </div>
       <figcaption>說明：取車時請再核對油箱蓋內側貼紙；九州鄉間加油站傍晚常提早關門，建議油表剩一半就先補油，還車前加滿並保留收據（<a href="https://tc.tabirai.net/transportation/page/report-3389?lang=zh-tw" target="_blank" rel="noopener noreferrer">Tabirai</a>、<a href="https://att-japan.net/zh_tw/culture/687/" target="_blank" rel="noopener noreferrer">att.JAPAN</a>）。</figcaption>
     </figure>
 
@@ -527,7 +755,8 @@ ol.sources-list li {
         <ul class="clean-list">
           <li><strong>日圓現金 50,000–80,000 日圓</strong>（約 NT$10,500–16,800），多換 1,000 日圓鈔票供停車繳費機、神社參拜與 LOPIA 超市使用；ETC 本次實付約 6,990 日圓（含 11/28–29 假日折扣），比買 KEP 划算。</li>
           <li><strong>信用卡優先順序</strong>：實體與免稅店刷日圓選<strong>永豐大戶卡</strong>（國外 4.5%）或<strong>台新 Richart 卡「玩旅刷」</strong>（3.3%）。</li>
-          <li><strong>天氣穿著與隨車必備</strong>：依 11/19 最新預報，白天 <strong>16–21°C</strong>、早晚 <strong>7–12°C</strong>，大人與寶寶免穿厚發熱衣，改採「薄長袖＋鋪棉背心＋防潑水防風外套」並備推車雨罩（應對 11/26 晚與 11/28 上午陣雨）。隨車備雙孔 USB 車充、長充電線、手機架、食物剪刀、保溫水杯與米餅。</li>
+          <li><strong>2026/11 新制退稅＆行前必辦</strong>：出發前先完成 <strong>Visit Japan Web</strong> 填報截圖；日本免稅自 2026/11/1 改為「店內付含稅價、離境海關查驗後退稅」（取消消耗品密封袋，但在日本境內吃掉或拆用即無法退稅，<a href="https://www.customs.go.jp/kaigairyoko/taxrefund.htm" target="_blank" rel="noopener noreferrer">日本海關</a>）。</li>
+          <li><strong>天氣穿著與隨車必備</strong>：依 11/25 出發前最新預報，<strong>11/27 晚至 11/28 全天有雨且風大（60–74%）</strong>，<strong>11/29–30 山區清晨低溫驟降至 2–6°C</strong>，12/1 回暖至 21–22°C。務必備妥「防潑水防風外套、推車雨罩、毛帽、鋪棉背心與小蓋毯」應對降雨與晨間低溫。隨車備雙孔 USB 車充、長充電線、手機架、食物剪刀、保溫水杯與米餅。</li>
         </ul>
       </div>
       <div class="col-block">
@@ -543,7 +772,9 @@ ol.sources-list li {
   <!-- Sources -->
   <section class="span-12 sec">
     <h2>參考資料</h2>
-    <ol class="sources-list">
+    <details class="sources-details">
+      <summary>點擊展開全部參考資料與官方來源</summary>
+      <ol class="sources-list">
       <li><a href="https://kyushu.letsgojp.com/archives/916642/" target="_blank" rel="noopener noreferrer">樂吃購！日本｜福岡明太子麵包 5 選：The Full Full Hakata、DACOMECCA 營業時間與預約</a></li>
       <li><a href="https://tw.savorjapan.com/0004045152" target="_blank" rel="noopener noreferrer">Savor Japan｜水炊料亭 博多華味鳥 博多站前店資訊與親子友善說明</a></li>
       <li><a href="https://mitsui-shopping-park.com/tw/lalaport/mamawith/fukuoka/approach/04.html" target="_blank" rel="noopener noreferrer">LaLaport 福岡官方網站｜美食廣場與親子設施指南</a></li>
@@ -580,7 +811,12 @@ ol.sources-list li {
       <li><a href="https://shingeki-hita.com/spot/001.html" target="_blank" rel="noopener noreferrer">進擊的巨人 in HITA 官方網站｜大山ダム與本館免費停車場</a></li>
       <li><a href="https://mikuma.jp/access/" target="_blank" rel="noopener noreferrer">小京都之湯 みくまホテル官方交通與免費停車資訊</a></li>
       <li><a href="https://japantravel.navitime.com/zh-tw/area/jp/spot/02301-1310378/" target="_blank" rel="noopener noreferrer">NAVITIME｜秋月城跡與秋月停車場資訊</a></li>
+          <li><a href="https://www.customs.go.jp/kaigairyoko/taxrefund.htm" target="_blank" rel="noopener noreferrer">日本海關（Japan Customs）｜2026 年 11 月 1 日起外國旅客免稅退稅新制說明</a></li>
+      <li><a href="https://www.timeanddate.com/weather/japan/fukuoka/ext" target="_blank" rel="noopener noreferrer">Time and Date｜福岡 14 天最新天氣預報（2026/11/25 更新）</a></li>
+      <li><a href="https://www.timeanddate.com/weather/@8604580/ext" target="_blank" rel="noopener noreferrer">Time and Date｜由布院 14 天最新天氣預報（2026/11/25 更新）</a></li>
+      <li><a href="https://africansafari.co.jp/information/" target="_blank" rel="noopener noreferrer">九州自然動物公園（African Safari）｜11 月營業時間與入園須知</a></li>
     </ol>
+    </details>
   </section>
 
 </main>
